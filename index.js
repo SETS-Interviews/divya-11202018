@@ -39,7 +39,7 @@ const job = schedule.scheduleJob({
         let numberOfBranches = await octo.getBranches(octokit);
         console.log('Total branches: ', numberOfBranches);
     } catch (error){
-        console.error(err);
+        console.error(error);
     }
 });
 
