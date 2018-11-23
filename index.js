@@ -12,7 +12,7 @@
  *
  */
 
-const schedule = require('node-schedule'); // Ref - https://github.com/node-schedule/node-schedule
+const schedule = require('node-schedule-tz');
 const octo = require('./lib/octo');
 const debug = process.env.DEBUG;
 
@@ -33,7 +33,8 @@ const octokit = require('@octokit/rest')({
 const job = schedule.scheduleJob({
     hour: process.env.HOUR,
     minute: process.env.MINUTE,
-    dayOfWeek: process.env.DAY
+    dayOfWeek: process.env.DAY,
+    tz: process.env.TZ
 }, async function () {
     try{
         let numberOfBranches = await octo.getBranches(octokit);
