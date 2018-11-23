@@ -38,6 +38,8 @@ const job = schedule.scheduleJob({
     try{
         let numberOfBranches = await octo.getBranches(octokit);
         console.log('Total branches: ', numberOfBranches);
+        let numberOfIssues = await octo.getIssues(octokit);
+        console.log('Total Issues:', numberOfIssues);
         console.log('\nNext job will be invoked at: ', job.nextInvocation());
     } catch (error){
         console.error(error);
