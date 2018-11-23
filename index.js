@@ -14,7 +14,6 @@
 
 const schedule = require('node-schedule-tz');
 const octo = require('./lib/octo');
-const debug = process.env.DEBUG;
 
 const octokit = require('@octokit/rest')({
     timeout: 0, // 0 means no request timeout
@@ -39,11 +38,10 @@ const job = schedule.scheduleJob({
     try{
         let numberOfBranches = await octo.getBranches(octokit);
         console.log('Total branches: ', numberOfBranches);
+        console.log('\nNext job will be invoked at: ', job.nextInvocation());
     } catch (error){
         console.error(error);
     }
 });
 
-if (debug) {
-    console.log('Job nextInvocation()', job.nextInvocation());
-}
+console.log('Next job will be invoked at: ', job.nextInvocation());
