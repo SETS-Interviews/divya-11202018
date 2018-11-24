@@ -24,6 +24,7 @@ const params = {
 };
 
 // Object Literal Syntax
+/* istanbul ignore next */
 const job = schedule.scheduleJob({
   hour: process.env.HOUR,
   minute: process.env.MINUTE,

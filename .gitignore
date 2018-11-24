@@ -1,2 +1,14 @@
 # Dependancy directories
 node_modules
+
+# Coverage directory used by tools like istanbul
+coverage/
+coverage/lcov-report
+coverage/lcov-report/lib
+*.js.html
+*.info
+coverage/lcov-report/lib/index.html
+coverage/lcov-report/lib/octo.js.html
+coverage/coverage.raw.json
+coverage/lcov.info
+coverage/lcov-report/index.html
