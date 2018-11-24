@@ -9,24 +9,15 @@
  * - Number of pull requests with the label http
  * - Additionally, get the title of the open pull requests with this label
  *
- *
  */
 
 const schedule = require('node-schedule-tz');
 const octo = require('./lib/octo');
 
-const octokit = require('@octokit/rest')({
-    timeout: 0, // 0 means no request timeout
-    headers: {
-        accept: 'application/vnd.github.v3+json',
-        'user-agent': 'octokit/rest.js v1.2.3', // v1.2.3 will be current version
-        authorization: process.env.GITHUB_TOKEN // Divyapuja's github token
-    },
-    // custom GitHub Enterprise URL
-    baseUrl: 'https://api.github.com',
-    // Node only: advanced request options can be passed as http(s) agent
-    agent: undefined
-})
+const params = {
+    owner: 'nodejs',
+    repo: 'node'
+};
 
 // Object Literal Syntax 
 const job = schedule.scheduleJob({
@@ -36,14 +27,25 @@ const job = schedule.scheduleJob({
     tz: process.env.TZ
 }, async function () {
     try{
-        let numberOfBranches = await octo.getBranches(octokit);
-        console.log('Total branches: ', numberOfBranches);
-        let numberOfIssues = await octo.getIssues(octokit);
-        console.log('Total Issues:', numberOfIssues);
-        console.log('\nNext job will be invoked at: ', job.nextInvocation());
+        const numberOfIssues = await octo.getOpenIssues(params);
+        console.log('Number of open issues:', numberOfIssues);
+
+        const numberOfBranches = await octo.getBranches(params);
+        console.log('\nNumber of branches:', numberOfBranches);
+
+        // Used object destructuring
+        const { openPRsTitles, prsCount } = await octo.getPRsWithLabel(params, 'http');
+
+        console.log('\nNumber of pull requests with the label http:', prsCount);
+        console.log('\nTitle of the open pull requests with label http:');
+
+        for (let i = 0; i < openPRsTitles.length; i++) {
+            console.log('\t', openPRsTitles[i]);
+        }
+        console.log('\nNext job will be invoked at:', job.nextInvocation());
     } catch (error){
         console.error(error);
     }
 });
 
-console.log('Next job will be invoked at: ', job.nextInvocation());
+console.log('Next job will be invoked at:', job.nextInvocation());
