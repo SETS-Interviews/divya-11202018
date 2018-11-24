@@ -16,5 +16,10 @@
   "dependencies": {
     "@octokit/rest": "~16.0.1",
     "node-schedule-tz": "~1.2.1-4"
+  },
+  "devDependencies": {
+    "eslint": "~4.19.1",
+    "eslint-config-airbnb-base": "~12.1.0",
+    "eslint-plugin-import": "~2.11.0"
   }
 }
