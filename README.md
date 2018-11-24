@@ -33,7 +33,8 @@ To avoid inspecting github token in docker history, it is recommanded to run thi
 ```
 docker run --env GITHUB_TOKEN=<USER'S_TOKEN> ibm/node-git-app
 ```
-
+If everything is successfully configured and installed, you should see a similar output after running the application in Docker
+![outputFromDocker](https://github.com/SETS-Interviews/divya-11202018/blob/dev/ScreenShots/outputFromDocker.PNG)
 ## Note
 
 I have used `job.nextInvocation()` method in `index.js` to print the time when the next job will be invoked. The time printed here depends on the system time. Don't worry, the job is configured to be invoked according to EST timezone i.e. America/New_York (ENV TZ)
