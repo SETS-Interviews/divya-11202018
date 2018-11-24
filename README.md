@@ -63,6 +63,24 @@ check:
 
 ![codeCoverageLocal](https://github.com/SETS-Interviews/divya-11202018/blob/dev/ScreenShots/codeCoverageLocal.PNG)
 
+## Issues faced and how did I resolve it
+ - HttpError: API rate limit exceeded :
+ ![accessLimitExceed](https://github.com/SETS-Interviews/divya-11202018/blob/dev/ScreenShots/accessLimitExceed.PNG)
+ - [x] **Solution:** Use user authentication. Set GITHUB_TOKEN env var
+ 
+ - Issue while doing npm install :
+ ![npmCacheError](https://github.com/SETS-Interviews/divya-11202018/blob/dev/ScreenShots/npmCacheError.PNG)
+ - [x] **Solution:** `npm cache clean --force`
+ 
+ - Istanbul Error :
+```
+Failed to parse file: DIR_PATH/lib/octo.js
+Transformation error; return original code
+{ Error: Line 26: Unexpected token function
+    at constructError (DIR_PATH/node_modules/istanbul/node_modules/esprima/esprima.js:2407:21)
+```
+- [x] **Solution:** `npm install --save istanbul@1.0.0-alpha.2`
+ 
 ## Contributing
 
 * Divyapuja Vitonde (divyapuja.vitonde@gmail.com)
